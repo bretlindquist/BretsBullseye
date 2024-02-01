@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB5E7FFA2B60C81C006B5B4F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E7FF92B60C81C006B5B4F /* Game.swift */; };
+		CB6989E02B6BE3A1003560CD /* TextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6989DF2B6BE3A1003560CD /* TextViews.swift */; };
 		CB8E64292B5FBC350093A92F /* bullseyebuild2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8E64282B5FBC350093A92F /* bullseyebuild2App.swift */; };
 		CB8E642B2B5FBC350093A92F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8E642A2B5FBC350093A92F /* ContentView.swift */; };
 		CB8E642D2B5FBC360093A92F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB8E642C2B5FBC360093A92F /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		CB5E7FF92B60C81C006B5B4F /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		CB6989DF2B6BE3A1003560CD /* TextViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViews.swift; sourceTree = "<group>"; };
 		CB8E64252B5FBC350093A92F /* bullseyebuild2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bullseyebuild2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB8E64282B5FBC350093A92F /* bullseyebuild2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bullseyebuild2App.swift; sourceTree = "<group>"; };
 		CB8E642A2B5FBC350093A92F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				CB8E642A2B5FBC350093A92F /* ContentView.swift */,
+				CB6989DF2B6BE3A1003560CD /* TextViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB8E642B2B5FBC350093A92F /* ContentView.swift in Sources */,
+				CB6989E02B6BE3A1003560CD /* TextViews.swift in Sources */,
 				CB5E7FFA2B60C81C006B5B4F /* Game.swift in Sources */,
 				CB8E64292B5FBC350093A92F /* bullseyebuild2App.swift in Sources */,
 			);

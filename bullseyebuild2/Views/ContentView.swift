@@ -12,77 +12,7 @@
 //  Created by Bret Allan Lindquist on 1/22/24.
 //
 
-//import SwiftUI
-//
-//struct ContentView: View {
-//  var body: some View {
-//    VStack(alignment: .center) {
-//      Text("🎯🎯🎯")
-//        .font(.largeTitle)
-//      Text("Put the bullseye as close as you can to").foregroundColor(Color(hue: 1.0, saturation: 0.739, brightness: 0.676))
-//        .multilineTextAlignment(.center).bold()
-//        .lineSpacing(4.0)
-//        .font(.title)
-//        .kerning(2)
-//      Text("89")
-//      HStack {
-//        Text("1")
-//        Slider(value: .constant(50), in: 1.0...100.0)
-//
-//        Text("100")
-//      }
-//      Button("Hit Me") {
-//
-//      }
-//    }
-//  }
-//}
-//
-//struct ContentView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    ContentView()
-//  }
-//}
-//struct CustomSlider : View {
-//    @State private var value : Double = 0
-//    init() {
-//        let thumbImage = UIImage(systemName: "circle.fill")
-//        UISlider.appearance().setThumbImage(thumbImage, for: .normal)
-//    }
-//
-//    var body: some View {
-//        Slider(value: $value)
-//    }
-//}
-
-
 import SwiftUI
-
-//struct BlueButton: ButtonStyle {
-//  func makeBody(configuration: Configuration) -> some View {
-//    configuration.label
-//      .padding()
-////      .background(Color(red: 0.85, green: 0, blue: 0.0))
-//      .background(Color("ButtonColor"))
-//      .foregroundColor(.white)
-////      .clipShape(Capsule())
-//      .cornerRadius(21)
-//      .bold()
-//      .font(.title2)
-//
-//  }
-//}
-//struct SidebarMenuView: View {
-//  var playAgainAction: () -> Void
-//
-//  var body: some View {
-//    List {
-//      Button("Play Again", action: playAgainAction)
-//    }
-//    .navigationTitle("Menu")
-//  }
-//}
-
 
 struct ContentView: View {
   @State private var sliderValue: Double = Double.random(in: 1...100)
@@ -121,108 +51,97 @@ struct ContentView: View {
       Color("BackgroundColor")
         .ignoresSafeArea()
       VStack {
-    
-          ZStack {
-            VStack(alignment: .center) {
-              
-//              Button(action: {
-//                self.isMenuOpen.toggle()
-//                isButtonActive = true
-//              }) {
-//                Image(systemName: "line.horizontal.3") // Hamburger icon
-//                  .imageScale(.large)
-//                  .padding()
-//              }
-              
-              Text("🎯🎯🎯")
-                .font(.largeTitle)
-                .padding(.bottom, 5.0)
-              Text("Hit the bullseye as close as you can to".uppercased())
+        
+        ZStack {
+          VStack(alignment: .center) {
+            
+           
+            InstructionsView(setGoal: $setGoal)
+            
+            HStack {
+              Text("1")
+                .foregroundColor(Color("TextColor"))
+                .frame(width: 20, height: 20)
+                .font(.body)
                 .fontWeight(.bold)
-//                .foregroundColor(Color(hue: 1.0, saturation: 0.739, brightness: 0.676))
-                .multilineTextAlignment(.center)
+              
+              Slider(value: $sliderValue, in: 1.0...100.0)
                 .bold()
-                .lineSpacing(4.0)
-                .font(.title)
-                .kerning(2)
-              Text("Goal: \(setGoal)")
-                .font(.largeTitle)
-                .fontWeight(.black)
-              HStack {
-                Text("1")
-                  .font(.body)
-                  .fontWeight(.bold)
-                Slider(value: $sliderValue, in: 1.0...100.0)
-                  .bold()
-                Text("100")
-                  .font(.body)
-                  .fontWeight(.bold)
-              }
-
-              Button("Hit Me".uppercased())
-              {
-                self.timer?.invalidate()
-                
-                oldGoal = setGoal
-                setGoal = Int.random(in: 1...100) // Generate new goal for the next round
-                self.calcScore()
-                
-                self.showAlert = true
-                
-              }
               
-              .padding(20.0)
-              .background(
-                ZStack {
-                  Color("ButtonColor")
-                  LinearGradient(
-                    gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
-                                       startPoint: .top, endPoint: .bottom)
-                    }
-                  )
-              .foregroundColor(.white)
-              .cornerRadius(21)
-              .bold()
-              .font(.title2)
+              Text("100")
+                .frame(width: 40, height: 20)
+                .foregroundColor(Color("TextColor"))
               
-    
-              .disabled(!isButtonActive)  // Disable the button based on isButtonActive
-              
-              //move total score to be on the left side
-              Text("Total Score")
-                .font(.largeTitle)
-                .multilineTextAlignment(.leading)
-              
-              
-              Text("\(Int(totalScore))")
-              
-                .alert(isPresented: $showAlert) {
-                  Alert(
-                    title: Text("Your Score"),
-                    message: Text("Goal: \(oldGoal),Sval: \(Int(sliderValue)),Tot: \(Int(totalScore))"),
-                    primaryButton: .default(Text("Play Again")) {
-                      self.resetGame()
-                    },
-                    secondaryButton: .cancel(Text("Stop")) {
-                      isButtonActive = false
-                    }
-                  )
-                }
+                .font(.body)
+                .fontWeight(.bold)
             }
-//                .blur(radius: isMenuOpen ? 3 : 0)
-//
-//                // Sidebar Menu
-//                if isMenuOpen {
-//                    SidebarMenuView(playAgainAction: {
-//                        resetGame()
-//                        isMenuOpen = false  // Close the menu after playing again
-//                    })
-//                    .frame(width: 250)
-//                    .transition(.move(edge: .leading))
-//            }
+            
+            Button("Hit Me".uppercased())
+            {
+              self.timer?.invalidate()
+              
+              oldGoal = setGoal
+              setGoal = Int.random(in: 1...100) // Generate new goal for the next round
+              self.calcScore()
+              
+              self.showAlert = true
+              
+            }
+            
+            .padding(20.0)
+            .background(
+              ZStack {
+                Color("ButtonColor")
+                LinearGradient(
+                  gradient: Gradient(colors: [Color.white.opacity(0.3), Color.clear]),
+                  startPoint: .top, endPoint: .bottom)
+              }
+            )
+            .foregroundColor(.white)
+            .cornerRadius(21)
+            .bold()
+            .font(.title2)
+            
+            
+            .disabled(!isButtonActive)  // Disable the button based on isButtonActive
+            
+            //move total score to be on the left side
+            Text("Total Score")
+              .font(.largeTitle)
+              .multilineTextAlignment(.leading)
+              .foregroundColor(Color("TextColor"))
+            
+            
+            Text("\(Int(totalScore))")
+              .foregroundColor(Color("TextColor"))
+            
+              .alert(isPresented: $showAlert) {
+                Alert(
+                  title: Text("Your Score"),
+                  message: Text("Goal: \(oldGoal),Sval: \(Int(sliderValue)),Tot: \(Int(totalScore))"),
+                  primaryButton: .default(Text("Play Again")) {
+                    self.resetGame()
+                  },
+                  secondaryButton: .cancel(Text("Stop")) {
+                    isButtonActive = false
+                  }
+                )
+              }
           }
-//          .navigationBarHidden(true)
-
+          //                .blur(radius: isMenuOpen ? 3 : 0)
+          //
+          //                // Sidebar Menu
+          //                if isMenuOpen {
+          //                    SidebarMenuView(playAgainAction: {
+          //                        resetGame()
+          //                        isMenuOpen = false  // Close the menu after playing again
+          //                    })
+          //                    .frame(width: 250)
+          //                    .transition(.move(edge: .leading))
+          //            }
+        }
+        //          .navigationBarHidden(true)
+        
         
         
         .onAppear {
@@ -278,14 +197,23 @@ struct ContentView: View {
 }
 
 
-
+struct InstructionsView: View {
+  @Binding var setGoal: Int
+  
+  var body: some View {
+    InstructionText(text: "Hit the bullseye as close as you can to")
+      .padding(.horizontal, 30)
+      
+    BigNumberView(text: "Goal: \(setGoal)")
+  }
+}
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
     ContentView()
       .previewDevice("iPhone 14 Pro Max")
       .preferredColorScheme(.dark)
-
+    
   }
 }
 
