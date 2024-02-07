@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct bullseyebuild2App: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+struct Bullseyebuild2App: App {
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }

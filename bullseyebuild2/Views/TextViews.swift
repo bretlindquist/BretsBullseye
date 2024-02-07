@@ -10,18 +10,25 @@ import SwiftUI
 struct InstructionText: View {
   var text: String
   var body: some View {
-    Text("🎯🎯🎯")
-      .font(.largeTitle)
-      .padding(.bottom, 5.0)
     Text(text.uppercased())
       .fontWeight(.bold)
-    //                .foregroundColor(Color(hue: 1.0, saturation: 0.739, brightness: 0.676))
       .multilineTextAlignment(.center)
       .bold()
-      .lineSpacing(4.0)
-      .font(.title)
+      .font(.title3)
       .kerning(2)
     .foregroundColor(Color("TextColor"))  }
+}
+
+
+struct SliderLabelText: View {
+  var text: String
+  var body: some View {
+    Text(text)
+      .foregroundColor(Color("TextColor"))
+    //      .frame(width: 20, height: 20)
+      .font(.body)
+      .fontWeight(.bold)
+  }
 }
 
 struct BigNumberView: View {
@@ -33,11 +40,115 @@ struct BigNumberView: View {
       .foregroundColor(Color("TextColor"))
   }
 }
-struct TextViews_Previews: PreviewProvider {
-  static var previews: some View {
+struct TotalScoreTextViews: View {
+  var text: String
+  var body: some View {
+    Text(text)
+      .font(.title2)
+      .multilineTextAlignment(.leading)
+      .foregroundColor(Color("TextColor"))
+  }
+}
+struct CurrentScoreView: View {
+  var text: String
+  var body: some View {
+    Text(text)
+      .foregroundColor(Color("TextColor"))
+  }
+}
+struct LabelText: View {
+  var text: String
+  var body: some View {
+    Text(text.uppercased())
+      .foregroundColor(Color("TextColor"))
+      .bold()
+      .kerning(1.5)
+      .font(.caption)
+  }
+}
+struct BodyText: View {
+  var text: String
+  var body: some View {
+    Text(text)
+      .font(.subheadline)
+      .fontWeight(.semibold)
+      .multilineTextAlignment(.center)
+      .lineSpacing(12)
+  }
+}
+struct ScoreText: View {
+  var score: Int
+  var body: some View {
+    Text(String(score))
+      .bold()
+      .kerning(-0.2)
+      .foregroundColor(Color("TextColor"))
+      .font(.title3)
+  }
+}
+
+struct DateText: View {
+  var date: Date
+  var body: some View {
+    Text(date, style: .time)
+      .bold()
+      .kerning(-0.2)
+      .foregroundColor(Color("TextColor"))
+      .font(.title3)
+//      Text(date, style: .date) // i want this to display Time / Date but for the scope of this assignment i'm leaving it for now
+  }
+}
+
+struct ButtonText: View {
+  var text: String
+  var body: some View {
+    Text(text)
+      .foregroundColor(.white)
+      .font(.title3)
+      .bold()
+        .padding()
+      .frame(maxWidth: .infinity)
+      .background(
+        Color.accentColor
+          .cornerRadius(15)
+      )
+  }
+}
+
+struct BigBoldText: View {
+  let text: String
+  var body: some View {
+    Text(text.uppercased())
+      .font(.title)
+      .fontWeight(.black)
+      .kerning(2.0)
+      .foregroundColor(Color("TextColor"))
+  }
+}
+
+struct PreviewInstructionsView: View {
+  var body: some View {
     VStack {
       InstructionText(text: "Instructions")
       BigNumberView(text: "Goal: 999")
+      SliderLabelText(text: "1-100")
+      TotalScoreTextViews(text: "Total Score")
+      LabelText(text: "Label")
+      BodyText(text: "You scored 200\n👏👏👏")
+      ButtonText(text: "Start New Round")
+      ScoreText(score: 459)
+      DateText(date: Date())
+      BigBoldText(text: "Leaderboard")
     }
-    }
+    .padding()
+  }
+}
+
+struct TextViews_Previews: PreviewProvider {
+  static var previews: some View {
+    PreviewInstructionsView()
+    PreviewInstructionsView()
+      .previewDevice("iPhone 14 Pro Max")
+      .preferredColorScheme(.dark)
+  }
 }
